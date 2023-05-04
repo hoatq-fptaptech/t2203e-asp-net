@@ -1,0 +1,24 @@
+﻿@model T2203E.Entities.Product
+@{
+
+}
+
+<h1>Edit product: @Model.Name </h1>
+<form action="~/Products/Edit" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" name="Name" value="@Model.Name" type="text" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input class="form-control" name="Price" value="@Model.Price" type="number" />
+    </div>
+    <div class="form-group">
+        <label>Thumbnail</label>
+        <input class="form-control" name="Thumbnail" value="@Model.Thumbnail" type="text" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
