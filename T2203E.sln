@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1705.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T2203E", "T2203E\T2203E.csproj", "{B5B07162-575C-4677-A5FD-6E6942A24F99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T2203E_API", "T2203E_API\T2203E_API.csproj", "{89C7655D-C4D4-45DD-84E8-F10FC47258E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B5B07162-575C-4677-A5FD-6E6942A24F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5B07162-575C-4677-A5FD-6E6942A24F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5B07162-575C-4677-A5FD-6E6942A24F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89C7655D-C4D4-45DD-84E8-F10FC47258E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C7655D-C4D4-45DD-84E8-F10FC47258E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C7655D-C4D4-45DD-84E8-F10FC47258E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C7655D-C4D4-45DD-84E8-F10FC47258E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
