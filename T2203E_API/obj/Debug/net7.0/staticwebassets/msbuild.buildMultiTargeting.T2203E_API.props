@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/T2203E_API.props" />
+</Project>
