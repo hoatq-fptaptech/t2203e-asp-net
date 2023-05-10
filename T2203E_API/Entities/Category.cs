@@ -1,17 +1,13 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-namespace T2203E_API.Entities
-{
-	[Table("categories")]
-	[Index(nameof(name),IsUnique =true)]
-	public class Category
-	{
-		[Key]
-		public int id { get; set; }
-		[Required]
-		public string name { get; set; }
-	}
-}
+using System.Collections.Generic;
 
+namespace T2203E_API.Entities;
+
+public partial class Category
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public virtual ICollection<Product> Products { get; set; }
+}

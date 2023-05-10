@@ -12,8 +12,11 @@ namespace T2203E_API.Controllers
     [Route("api/products")]
     public class ProductsController : ControllerBase
     {
-        private readonly Context _context;
-        public ProductsController(Context context)
+        // Scaffold-DbContext "connection string" Microsoft.EntityFrameworkCore.SqlServer - OutputDir Entities - Force
+        // dotnet ef dbcontext scaffold "connection string" Microsoft.EntityFrameworkCore.SqlServer --output-dir=Entities --force
+
+        private readonly T2203eApiContext _context;
+        public ProductsController(T2203eApiContext context)
         {
             _context = context;
         }
@@ -21,7 +24,12 @@ namespace T2203E_API.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var products = _context.Products.ToList<Product>();
+            var products = _context.Products
+                .ToList();
+            //foreach(var p in products)
+            //{
+            //    Console.WriteLine(p.Category.Name);
+            //}
             return Ok(products);
         }
 
@@ -40,7 +48,7 @@ namespace T2203E_API.Controllers
         {
             _context.Products.Add(product);
             _context.SaveChanges();
-            return Created($"/get-by-id?id={product.id}", product);
+            return Created($"/get-by-id?id={product.Id}", product);
         }
 
         [HttpPut]

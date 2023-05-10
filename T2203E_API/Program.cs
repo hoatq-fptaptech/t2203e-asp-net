@@ -21,7 +21,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<T2203E_API.Entities.Context>(
+builder.Services.AddDbContext<T2203E_API.Entities.T2203eApiContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("T2203E_API"))
 );
 var app = builder.Build();

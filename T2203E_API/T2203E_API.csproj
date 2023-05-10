@@ -24,10 +24,4 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.9" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Entities\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
 </Project>
