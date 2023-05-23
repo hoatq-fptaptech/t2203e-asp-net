@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using T2203E_API.Entities;
+using Microsoft.EntityFrameworkCore;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace T2203E_API.Controllers
@@ -24,8 +25,8 @@ namespace T2203E_API.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var products = _context.Products
-                .ToList();
+            var products = _context.Products.Include(p=>p.Category)
+                .ToArray();
             //foreach(var p in products)
             //{
             //    Console.WriteLine(p.Category.Name);

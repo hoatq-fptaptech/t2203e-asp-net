@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using T2203E_API.Entities;
+using Microsoft.EntityFrameworkCore;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace T2203E_API.Controllers
@@ -30,7 +31,9 @@ namespace T2203E_API.Controllers
         [Route("get-by-id")]
         public IActionResult Get(int id)
         {
-            var category = _context.Categories.Find(id);
+            var category = _context.Categories.Where(c=>c.Id==id)
+                .Include(category => category.Products)
+                .First();
             if (category == null)
                 return NotFound();
             return Ok(category);
