@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using T2203E_API.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace T2203E_API.Controllers
@@ -14,7 +15,7 @@ namespace T2203E_API.Controllers
     public class ProductsController : ControllerBase
     {
         // Scaffold-DbContext "connection string" Microsoft.EntityFrameworkCore.SqlServer - OutputDir Entities - Force
-        // dotnet ef dbcontext scaffold "connection string" Microsoft.EntityFrameworkCore.SqlServer --output-dir=Entities --force
+        // dotnet ef dbcontext scaffold "Data Source=localhost,1433; Database=T2203E_API;User Id=sa;Password=sa123456;TrustServerCertificate=true" Microsoft.EntityFrameworkCore.SqlServer --output-dir=Entities --force
 
         private readonly T2203eApiContext _context;
         public ProductsController(T2203eApiContext context)
@@ -69,6 +70,18 @@ namespace T2203E_API.Controllers
             _context.Products.Remove(productDelete);
             _context.SaveChanges();
             return NoContent();
+        }
+
+        [HttpGet]
+        [Route("search")]
+        public IActionResult Search(string? q,int? limit,int? page,[FromHeader] int userId)
+        {
+            limit = limit != null ? limit : 10;
+            page = page != null ? page : 1;
+            int offset = (int)((page - 1) * limit);
+            var products = _context.Products.Where(p => p.Name.Contains(q))
+                .Skip(offset).Take((int)limit).ToArray();
+            return Ok(products);
         }
     }
 }

@@ -13,9 +13,9 @@ public partial class Product
 
     public string? Thumbnail { get; set; }
 
-    public int Qty { get; set; }
+    public int? Qty { get; set; }
 
-    public int CategoryId { get; set; }
+    public int? CategoryId { get; set; }
 
-    public virtual Category? Category { get; set; } = null!;
+    public virtual Category? Category { get; set; }
 }
