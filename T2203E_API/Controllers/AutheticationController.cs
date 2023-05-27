@@ -8,7 +8,11 @@ using System.Security.Cryptography;
 using T2203E_API.Dtos;
 using BCrypt.Net;
 using Microsoft.AspNetCore.Identity;
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using System.Security.Claims;
 
 namespace T2203E_API.Controllers
 {
@@ -17,10 +21,12 @@ namespace T2203E_API.Controllers
     public class AutheticationController : ControllerBase
     {
         private readonly T2203eApiContext _context;
+        private readonly IConfiguration _config;
 
-        public AutheticationController(T2203eApiContext context)
+        public AutheticationController(T2203eApiContext context,IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
         [HttpPost]
@@ -28,17 +34,59 @@ namespace T2203E_API.Controllers
         public IActionResult Register(UserRegister user)
         {
             var hashed = BCrypt.Net.BCrypt.HashPassword(user.Password);
-            _context.Users.Add(new Entities.User { Email=user.Email,Name=user.Name,Password=hashed });
+            var u = new Entities.User { Email = user.Email, Name = user.Name, Password = hashed };
+            _context.Users.Add(u);
             _context.SaveChanges();
-            return Ok(new UserData { Name=user.Name,Email=user.Email});
+            return Ok(new UserData { Name=user.Name,Email=user.Email,Token= GenerateJWT(u)});
+        }
+
+        private String GenerateJWT(User user)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
+            var signatureKey = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                new Claim(ClaimTypes.Name,user.Name),
+                new Claim(ClaimTypes.Email,user.Email)
+            };
+            var token = new JwtSecurityToken(
+                _config["JWT:Issuer"],
+                _config["JWT:Audience"],
+                claims,
+                expires: DateTime.Now.AddHours(2),
+                signingCredentials: signatureKey
+                );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         //[HttpPost]
         //[Route("/login")]
         //public IActionResult Login()
         //{
-            //bool verified = BCrypt.Net.BCrypt.Verify("Pa$$w0rd", passwordHash);
+        //bool verified = BCrypt.Net.BCrypt.Verify("Pa$$w0rd", passwordHash);
         //}
+
+        [HttpGet]
+        [Route("profile")]
+        public IActionResult Profile()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if(identity != null)
+            {
+                var userClaims = identity.Claims;
+                var Id = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+                var user =  new UserData
+                {
+                    Id = Convert.ToInt32(Id),
+                    Name = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value,
+                    Email = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value
+                };
+                return Ok(user);
+            }
+            return Unauthorized();
+        }
     }
 }
 
