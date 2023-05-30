@@ -30,7 +30,7 @@ namespace T2203E_API.Controllers
         }
 
         [HttpPost]
-        [Route("/register")]
+        [Route("register")]
         public IActionResult Register(UserRegister user)
         {
             var hashed = BCrypt.Net.BCrypt.HashPassword(user.Password);
@@ -61,12 +61,20 @@ namespace T2203E_API.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        //[HttpPost]
-        //[Route("/login")]
-        //public IActionResult Login()
-        //{
-        //bool verified = BCrypt.Net.BCrypt.Verify("Pa$$w0rd", passwordHash);
-        //}
+        [HttpPost]
+        [Route("login")]
+        public IActionResult Login(UserLogin userLogin)
+        {
+            var user = _context.Users.Where(u => u.Email.Equals(userLogin.Email))
+                .First();
+            if (user == null)
+                return Unauthorized();
+            bool verified = BCrypt.Net.BCrypt.Verify(userLogin.Password, user.Password);
+            if(!verified)
+                return Unauthorized();
+
+            return Ok(new UserData {Id=user.Id, Name = user.Name, Email = user.Email, Token = GenerateJWT(user) });
+        }
 
         [HttpGet]
         [Route("profile")]
