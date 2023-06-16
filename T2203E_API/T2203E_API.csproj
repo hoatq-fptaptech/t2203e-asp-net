@@ -37,5 +37,11 @@
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Dtos\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\uploads\" />
   </ItemGroup>
 </Project>
