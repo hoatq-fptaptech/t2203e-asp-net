@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using T2203E_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace T2203E_API.Controllers
 {
     [ApiController]
     [Route("api/products")]
+    [Authorize(Policy = "Admin")]
     public class ProductsController : ControllerBase
     {
         // Scaffold-DbContext "connection string" Microsoft.EntityFrameworkCore.SqlServer - OutputDir Entities - Force

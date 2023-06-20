@@ -42,6 +42,26 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("SuperAdmin", policy => policy.RequireUserName("rootadmin"));
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("Staff", policy => policy.RequireRole("Staff"));
+
+    options.AddPolicy("Dev", policy => policy.RequireClaim("IT","Developer"));
+    options.AddPolicy("QA", policy => policy.RequireClaim("IT","QA"));
+    options.AddPolicy("BA", policy => policy.RequireClaim("IT", "BA"));
+
+    options.AddPolicy("DEV_QA", policy => policy.RequireAssertion(
+        context => context.User.HasClaim(claim => claim.Type == "IT"
+        && (claim.Value == "QA" || claim.Value == "Developer")
+        )));
+
+    options.AddPolicy("DEV_ADMIN", policy => policy.RequireAssertion(
+        context => context.User.HasClaim(claim => claim.Type == "IT" && claim.Value == "Developer")
+           && context.User.IsInRole("Admin")
+        ));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
