@@ -61,6 +61,7 @@ builder.Services.AddAuthorization(options =>
         context => context.User.HasClaim(claim => claim.Type == "IT" && claim.Value == "Developer")
            && context.User.IsInRole("Admin")
         ));
+    options.AddPolicy("Auth", policy => policy.RequireAuthenticatedUser());
 });
 var app = builder.Build();
 
