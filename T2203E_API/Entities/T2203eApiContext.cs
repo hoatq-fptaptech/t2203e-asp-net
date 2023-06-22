@@ -6,8 +6,10 @@ namespace T2203E_API.Entities;
 
 public partial class T2203eApiContext : DbContext
 {
+    public static String connectionString;
     public T2203eApiContext()
     {
+      
     }
 
     public T2203eApiContext(DbContextOptions<T2203eApiContext> options)
@@ -22,7 +24,7 @@ public partial class T2203eApiContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=localhost,1433; Database=T2203E_API;User Id=sa;Password=sa123456;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer(connectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

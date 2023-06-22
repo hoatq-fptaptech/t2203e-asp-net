@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 // add Cors
@@ -29,6 +30,7 @@ builder.Services.AddControllers()
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+T2203E_API.Entities.T2203eApiContext.connectionString = builder.Configuration.GetConnectionString("T2203E_API");
 builder.Services.AddDbContext<T2203E_API.Entities.T2203eApiContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("T2203E_API"))
 );

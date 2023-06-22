@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using T2203E_API.Requirements;
 using System.Security.Claims;
+using Microsoft.Extensions.Configuration;
+
 namespace T2203E_API.Handlers
 {
     public class ValidBirthdayHandler : AuthorizationHandler<YearOldRequirement>
     {
+       
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, YearOldRequirement requirement)
         {
             if (IsValidBirthday(context.User,requirement))
@@ -29,6 +32,8 @@ namespace T2203E_API.Handlers
             var birthday = DateTime.Parse(userData.Birthday.ToString());
             var diffYear = DateTime.Today.Year - birthday.Year;
             if (diffYear >= requirement.MinYear && diffYear <= requirement.MaxYear) return true;
+            
+          
             return false;
         }
     }
