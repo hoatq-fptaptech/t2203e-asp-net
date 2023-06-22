@@ -13,11 +13,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Security.Claims;
-
+using Microsoft.AspNetCore.Authorization;
 namespace T2203E_API.Controllers
 {
     [ApiController]
     [Route("/api/auth")]
+    [Authorize(Policy = "Auth")]
     public class AutheticationController : ControllerBase
     {
         private readonly T2203eApiContext _context;
@@ -31,6 +32,7 @@ namespace T2203E_API.Controllers
 
         [HttpPost]
         [Route("register")]
+        [AllowAnonymous]
         public IActionResult Register(UserRegister user)
         {
             var hashed = BCrypt.Net.BCrypt.HashPassword(user.Password);
@@ -65,6 +67,7 @@ namespace T2203E_API.Controllers
 
         [HttpPost]
         [Route("login")]
+        [AllowAnonymous]
         public IActionResult Login(UserLogin userLogin)
         {
             var user = _context.Users.Where(u => u.Email.Equals(userLogin.Email))

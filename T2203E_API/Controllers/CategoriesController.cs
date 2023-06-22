@@ -13,6 +13,7 @@ namespace T2203E_API.Controllers
 {
     [ApiController]
     [Route("api/categories")]
+    [Authorize(Policy = "ValidYearOld")]
     public class CategoriesController : Controller
     {
         private readonly T2203eApiContext _context;
@@ -22,7 +23,8 @@ namespace T2203E_API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "ValidYearOld")]
+        //[Authorize(Policy = "ValidYearOld")]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var categories = _context.Categories

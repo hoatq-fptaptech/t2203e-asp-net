@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/Users/macbook/Projects/T2203E/T2203E/T2203E.csproj": {}
+    "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E/T2203E.csproj": {}
   },
   "projects": {
-    "/Users/macbook/Projects/T2203E/T2203E/T2203E.csproj": {
+    "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E/T2203E.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/macbook/Projects/T2203E/T2203E/T2203E.csproj",
+        "projectUniqueName": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E/T2203E.csproj",
         "projectName": "T2203E",
-        "projectPath": "/Users/macbook/Projects/T2203E/T2203E/T2203E.csproj",
-        "packagesPath": "/Users/macbook/.nuget/packages/",
-        "outputPath": "/Users/macbook/Projects/T2203E/T2203E/obj/",
+        "projectPath": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E/T2203E.csproj",
+        "packagesPath": "/Users/quanghoatrinh/.nuget/packages/",
+        "outputPath": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/macbook/.nuget/NuGet/NuGet.Config"
+          "/Users/quanghoatrinh/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/sdk/7.0.304/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -78,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       }
     }

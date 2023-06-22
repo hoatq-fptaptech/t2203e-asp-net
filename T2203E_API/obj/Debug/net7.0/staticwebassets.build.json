@@ -1,11 +1,71 @@
 {
   "Version": 1,
-  "Hash": "empdpVKQjkqsaRCwLaQFk1klgickPvmuxm4cE9x5EMY=",
+  "Hash": "iwvdQrXKaBmAiz5jGkI8Sasb7TeOKm72qB0fSr6Bo7A=",
   "Source": "T2203E_API",
   "BasePath": "_content/T2203E_API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "T2203E_API/wwwroot",
+      "Source": "T2203E_API",
+      "ContentRoot": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E_API/wwwroot/",
+      "BasePath": "_content/T2203E_API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E_API/wwwroot/uploads/9e1b0833-4c72-4b10-b002-2b43f7c4e61aavatar4.png",
+      "SourceId": "T2203E_API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E_API/wwwroot/",
+      "BasePath": "_content/T2203E_API",
+      "RelativePath": "uploads/9e1b0833-4c72-4b10-b002-2b43f7c4e61aavatar4.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/9e1b0833-4c72-4b10-b002-2b43f7c4e61aavatar4.png"
+    },
+    {
+      "Identity": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E_API/wwwroot/uploads/b0aa76b1-d3a7-4ab8-9deb-bec86bba355eavatar2.png",
+      "SourceId": "T2203E_API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E_API/wwwroot/",
+      "BasePath": "_content/T2203E_API",
+      "RelativePath": "uploads/b0aa76b1-d3a7-4ab8-9deb-bec86bba355eavatar2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/b0aa76b1-d3a7-4ab8-9deb-bec86bba355eavatar2.png"
+    },
+    {
+      "Identity": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E_API/wwwroot/uploads/c324d535-531c-4e73-b685-223342e17f1favatar3.png",
+      "SourceId": "T2203E_API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/quanghoatrinh/Documents/Aptech/SEM3/T2203E/t2203e-asp-net/T2203E_API/wwwroot/",
+      "BasePath": "_content/T2203E_API",
+      "RelativePath": "uploads/c324d535-531c-4e73-b685-223342e17f1favatar3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/c324d535-531c-4e73-b685-223342e17f1favatar3.png"
+    }
+  ]
 }
