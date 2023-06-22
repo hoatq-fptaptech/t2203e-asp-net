@@ -22,7 +22,7 @@ namespace T2203E_API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "DEV_QA")]
+        [Authorize(Policy = "ValidYearOld")]
         public IActionResult Index()
         {
             var categories = _context.Categories

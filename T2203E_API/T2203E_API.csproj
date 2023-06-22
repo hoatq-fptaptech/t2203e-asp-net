@@ -33,12 +33,16 @@
   <ItemGroup>
     <None Remove="Entities\" />
     <None Remove="Dtos\" />
+    <None Remove="Requirements\" />
+    <None Remove="Handlers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Dtos\" />
     <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\uploads\" />
+    <Folder Include="Requirements\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />

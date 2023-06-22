@@ -16,4 +16,6 @@ public partial class User
     public string? RoleTitle { get; set; }
 
     public string? JobTitle { get; set; }
+
+    public DateTime? Birthday { get; set; }
 }

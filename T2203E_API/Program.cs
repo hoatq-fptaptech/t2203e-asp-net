@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
+
 var builder = WebApplication.CreateBuilder(args);
 // add Cors
 builder.Services.AddCors(options =>
@@ -42,6 +44,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+
+// add Handlers
+builder.Services.AddSingleton<IAuthorizationHandler, T2203E_API.Handlers.ValidBirthdayHandler>();
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("SuperAdmin", policy => policy.RequireUserName("rootadmin"));
@@ -62,6 +68,11 @@ builder.Services.AddAuthorization(options =>
            && context.User.IsInRole("Admin")
         ));
     options.AddPolicy("Auth", policy => policy.RequireAuthenticatedUser());
+    var min = builder.Configuration["ValidYearOld:Min"];
+    options.AddPolicy("ValidYearOld", policy => policy.AddRequirements(
+        new T2203E_API.Requirements.YearOldRequirement(Convert.ToInt32(builder.Configuration["ValidYearOld:Min"]),
+                                Convert.ToInt32(builder.Configuration["ValidYearOld:Max"]))
+        ));
 });
 var app = builder.Build();
 
